@@ -37,7 +37,7 @@ function App() {
         </div>
       </div>
       <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 container text-center mx-auto ">
-        {movies?.map(movie => {
+        {movies.length > 0 ? (movies?.map(movie => {
           const countryCode = getCountryCodeFromLanguage(movie.original_language)
           return (
             <div key={movie.id} className="card col mx-5 my-3">
@@ -58,7 +58,13 @@ function App() {
               </div>
             </div>
           )
-        })}
+        })) : (
+          <p className="mx-auto mt-5 fs-3 ">
+            Nessun film trovato con questo nome.
+            <br />
+            Cercane un altro</p>
+        )
+        }
       </div>
     </>
   )
