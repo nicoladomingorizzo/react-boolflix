@@ -13,7 +13,6 @@ function App() {
   const [all, setAll] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-
   function handleSearchClick() {
     const ApiUrlMovies = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=it-IT&query=${searchQuery}`;
     const ApiUrlSeries = `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=it-IT&query=${searchQuery}`;
@@ -53,6 +52,19 @@ function App() {
       })
   }
 
+  function getRating(vote) {
+    const stars = [];
+    const rounded = Math.floor(vote / 2)
+    for (let i = 0; i < 5; i++) {
+      if (i < rounded) {
+        stars.push(<i className="bi bi-star-fill text-warning"></i>)
+      } else {
+        stars.push(<i className="bi bi-star text-warning"></i>)
+      }
+    }
+    return stars;
+  };
+
   return (
     <>
       <div className="container-fluid m-3 d-flex justify-content-between align-items-center ">
@@ -86,7 +98,7 @@ function App() {
                     item?.original_language
                   )}
                 </p>
-                <p><strong>Voto medio: </strong>{item?.vote_average?.toFixed(2)}</p>
+                <p><strong>Voto medio: </strong>{getRating(item?.vote_average)}</p>
               </div>
             </div>
           )
