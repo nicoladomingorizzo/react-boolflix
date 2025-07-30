@@ -6,7 +6,7 @@ function AppMain({ data, getRating, loading, getCountryCodeFromLanguage }) {
     }
 
     return (
-        <div className="bg-black">
+        <div className="bg-black min-vh-100">
             <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 container text-center mx-auto text-white">
                 {data?.length > 0 ? (
                     data.map(item => {
