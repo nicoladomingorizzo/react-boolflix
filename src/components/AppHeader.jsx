@@ -4,7 +4,7 @@ function AppHeader({ searchQuery, setSearchQuery, onSearch, allGen }) {
 
     const [genreFilter, setGenreFilter] = useState('')
     return (
-        <div className="container-fluid p-3 d-flex flex-wrap align-content-center justify-content-between align-items-center text-center bg-dark ">
+        <div className="container-fluid p-3 d-flex flex-wrap align-content-center justify-content-between align-items-center text-center bg-black ">
             <a href="https://fontmeme.com/it/font-netflix/">
                 <img
                     src="https://fontmeme.com/permalink/250729/8e39c74dfe76376db306b3062fc14f7d.png"
@@ -13,7 +13,14 @@ function AppHeader({ searchQuery, setSearchQuery, onSearch, allGen }) {
                 />
             </a>
             <div className="me-3 mt-3 d-flex gap-2 d-flex align-items-center">
-                <select className='p-2 rounded bg-dark text-white' >
+                <input
+                    type="text"
+                    className="p-1 rounded bg-black text-white"
+                    placeholder="Filtra generi"
+                    value={genreFilter}
+                    onChange={e => setGenreFilter(e.target.value)}
+                />
+                <select className='p-2 rounded bg-black text-white' >
                     <option value="">Seleziona il genere</option>
                     {(() => {
                         const ids = [];
@@ -32,13 +39,13 @@ function AppHeader({ searchQuery, setSearchQuery, onSearch, allGen }) {
                 </select>
                 <input
                     type="text"
-                    className="p-1 rounded bg-dark text-white"
+                    className="p-1 rounded bg-black text-white"
                     placeholder="Cerca un film o una serie"
                     value={searchQuery}
                     onChange={e => setSearchQuery(e.target.value)}
                     onKeyDown={e => e.key === 'Enter' && onSearch()}
                 />
-                <button className="btn btn-danger text-dark" onClick={onSearch}>
+                <button className="btn btn-danger" onClick={onSearch}>
                     Cerca
                 </button>
             </div>

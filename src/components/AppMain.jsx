@@ -6,14 +6,14 @@ function AppMain({ data, getRating, loading, getCountryCodeFromLanguage }) {
     }
 
     return (
-        <div className="bg-dark">
+        <div className="bg-black">
             <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 container text-center mx-auto text-white">
                 {data?.length > 0 ? (
                     data.map(item => {
                         const countryCode = getCountryCodeFromLanguage(item?.original_language);
                         return (
-                            <div key={item?.id} className=" col my-3">
-                                <div className="card h-100 border-0 bg-dark text-white">
+                            <div key={item?.id} className=" col my-1">
+                                <div className="card h-100 border-0 bg-black text-white">
                                     <figure className="card-img">
                                         <img
                                             src={
@@ -22,7 +22,7 @@ function AppMain({ data, getRating, loading, getCountryCodeFromLanguage }) {
                                                     : "https://via.placeholder.com/342x513?text=Nessuna+immagine"
                                             }
                                             alt={item?.title}
-                                            className="w-100 h-100"
+                                            className="w-100 h-100 rounded"
                                         />
                                     </figure>
                                     <div className=" card-info d-flex flex-column justify-content-between hidden py-3 px-2">
