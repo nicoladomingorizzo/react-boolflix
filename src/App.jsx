@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppHeader from "./components/AppHeader";
 import AppMain from "./components/AppMain";
 import getCountryCodeFromLanguage from "./db/language";
@@ -10,6 +10,39 @@ function App() {
   const [all, setAll] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
+  const [genresMovies, setGenresMovies] = useState([]);
+  const [genresSeries, setGenresSeries] = useState([]);
+  const [genresAll, setGenresAll] = useState([]);
+
+  useEffect(() => {
+
+    const ApiUrlMoviesGenresList = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`;
+    const ApiUrlSeriesGenresList = `https://api.themoviedb.org/3/genre/tv/list?api_key=${API_KEY}`;
+
+    Promise.all([
+      fetch(ApiUrlMoviesGenresList)
+        .then(res => {
+          return res.json()
+        }),
+      fetch(ApiUrlSeriesGenresList)
+        .then(res => res.json())
+    ])
+      .then(([moviesGenresData, SeriesGenresData]) => {
+        setGenresMovies(moviesGenresData?.genres);
+        setGenresSeries(SeriesGenresData?.genres);
+        const combinedGenres = [...moviesGenresData?.genres, ...SeriesGenresData?.genres];
+        //Ho aggiunto questo così filtro direttamente i generi prima di passarli 
+        const ids = [];
+        const uniqueGenres = combinedGenres.filter(genre => {
+          if (!genre?.id) return false;
+          if (ids.includes(genre.id)) return false;
+          ids.push(genre.id);
+          return true;
+        });
+        setGenresAll(uniqueGenres);
+
+      })
+  }, [])
 
   function handleSearchClick() {
     if (!searchQuery) return;
@@ -64,6 +97,7 @@ function App() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         onSearch={handleSearchClick}
+        allGen={genresAll}
       />
       <AppMain
         data={all}
