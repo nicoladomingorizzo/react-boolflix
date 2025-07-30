@@ -24,7 +24,7 @@ function AppMain({ data, getRating, loading, getCountryCodeFromLanguage }) {
                                         className="w-100 h-100"
                                     />
                                 </figure>
-                                <div className=" card-info d-flex flex-column justify-content-between hidden py-1 px2">
+                                <div className=" card-info d-flex flex-column justify-content-between hidden py-3 px-2">
                                     <p><strong>Titolo: </strong>{item?.title}</p>
                                     <p><strong>Titolo originale: </strong>{item?.original_title}</p>
                                     <p className="truncate"><strong>Descrizione: </strong>{item?.overview}</p>
@@ -45,7 +45,7 @@ function AppMain({ data, getRating, loading, getCountryCodeFromLanguage }) {
             ) : (
                 <p className="mx-auto mt-5 fs-3">Nessun film o Serie.</p>
             )}
-        </div>
+        </div >
     );
 }
 
