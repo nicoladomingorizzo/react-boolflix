@@ -11,27 +11,33 @@ function AppMain({ data, getRating, loading, getCountryCodeFromLanguage }) {
                 data.map(item => {
                     const countryCode = getCountryCodeFromLanguage(item?.original_language);
                     return (
-                        <div key={item?.id} className="card col mx-5 my-3">
-                            <div className="card-body d-flex flex-column justify-content-between">
-                                <img
-                                    src={
-                                        item?.poster_path
-                                            ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
-                                            : "https://via.placeholder.com/342x513?text=Nessuna+immagine"
-                                    }
-                                    alt={item?.title}
-                                />
-                                <p><strong>Titolo: </strong>{item?.title}</p>
-                                <p><strong>Titolo originale: </strong>{item?.original_title}</p>
-                                <p>
-                                    <strong>Lingua originale: </strong>{' '}
-                                    {countryCode ? (
-                                        <Flag code={countryCode} height='20' width='25' />
-                                    ) : (
-                                        item?.original_language
-                                    )}
-                                </p>
-                                <p><strong>Voto medio: </strong>{getRating(item?.vote_average)}</p>
+                        <div key={item?.id} className=" col my-3">
+                            <div className="card h-100 border-0">
+                                <figure className="card-img">
+                                    <img
+                                        src={
+                                            item?.poster_path
+                                                ? `https://image.tmdb.org/t/p/w342${item.poster_path}`
+                                                : "https://via.placeholder.com/342x513?text=Nessuna+immagine"
+                                        }
+                                        alt={item?.title}
+                                        className="w-100 h-100"
+                                    />
+                                </figure>
+                                <div className=" card-info d-flex flex-column justify-content-between hidden py-1 px2">
+                                    <p><strong>Titolo: </strong>{item?.title}</p>
+                                    <p><strong>Titolo originale: </strong>{item?.original_title}</p>
+                                    <p className="truncate"><strong>Descrizione: </strong>{item?.overview}</p>
+                                    <p>
+                                        <strong>Lingua originale: </strong>{' '}
+                                        {countryCode ? (
+                                            <Flag code={countryCode} height='20' width='25' />
+                                        ) : (
+                                            item?.original_language
+                                        )}
+                                    </p>
+                                    <p><strong>Voto medio: </strong>{getRating(item?.vote_average)}</p>
+                                </div>
                             </div>
                         </div>
                     );
