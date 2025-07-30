@@ -1,6 +1,6 @@
 function AppHeader({ searchQuery, setSearchQuery, onSearch }) {
     return (
-        <div className="container-fluid m-3 d-flex justify-content-between align-items-center">
+        <div className="container-fluid m-3 d-flex flex-wrap align-content-center justify-content-between align-items-center text-center ">
             <a href="https://fontmeme.com/it/font-netflix/">
                 <img
                     src="https://fontmeme.com/permalink/250729/8e39c74dfe76376db306b3062fc14f7d.png"
