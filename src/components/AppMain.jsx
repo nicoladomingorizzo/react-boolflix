@@ -2,7 +2,7 @@ import Flag from "react-world-flags";
 
 function AppMain({ data, getRating, loading, getCountryCodeFromLanguage }) {
     if (loading) {
-        return <p className="text-center fs-4 mt-4">Caricamento in corso...</p>;
+        return <p className="text-center fs-4 mt-4 text-white">Caricamento in corso...</p>;
     }
 
     return (
